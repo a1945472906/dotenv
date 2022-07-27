@@ -164,6 +164,12 @@ pub fn dotenv() -> Result<PathBuf> {
     Ok(path)
 }
 
+pub fn reload() -> Result<PathBuf> {
+    let (path, iter) = Finder::new().find()?;
+    iter.reload()?;
+    Ok(path)
+}
+
 /// Like `dotenv`, but returns an iterator over variables instead of loading into environment.
 ///
 /// # Examples

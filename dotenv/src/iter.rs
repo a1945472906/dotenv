@@ -26,7 +26,13 @@ impl<R: Read> Iter<R> {
                 env::set_var(&key, value);
             }
         }
-
+        Ok(())
+    }
+    pub fn reload(self) -> Result<()> {
+        for item in self {
+            let (key, value) = item?;
+            env::set_var(&key, value);
+        }
         Ok(())
     }
 }
